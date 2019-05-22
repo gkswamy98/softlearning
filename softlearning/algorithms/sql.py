@@ -54,7 +54,7 @@ class SQL(RLAlgorithm):
             save_full_state=False,
             train_Q=True,
             train_policy=True,
-            **kwargs,
+            **kwargs
     ):
         """
         Args:
@@ -366,7 +366,7 @@ class SQL(RLAlgorithm):
         ))
 
         self._diagnostics_ops = OrderedDict([
-            (f'{key}-{metric_name}', metric_fn(values))
+            ('{0}-{1}'.format(key, metric_name), metric_fn(values))
             for key, values in diagnosables.items()
             for metric_name, metric_fn in diagnostic_metrics.items()
         ])
@@ -428,7 +428,7 @@ class SQL(RLAlgorithm):
         diagnostics = self._session.run(self._diagnostics_ops, feed_dict)
 
         diagnostics.update(OrderedDict([
-            (f'policy/{key}', value)
+            ('policy/{0}'.format(key), value)
             for key, value in
             self._policy.get_diagnostics(batch['observations']).items()
         ]))
@@ -443,7 +443,7 @@ class SQL(RLAlgorithm):
         return {
             '_policy_optimizer': self._policy_optimizer,
             **{
-                f'Q_optimizer_{i}': optimizer
+                'Q_optimizer_{0}'.format(i): optimizer
                 for i, optimizer in enumerate(self._Q_optimizers)
             },
         }

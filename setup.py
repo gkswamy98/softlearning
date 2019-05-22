@@ -35,7 +35,7 @@ setup(
             'softlearning=softlearning.scripts.console_scripts:main',
         )
     },
-    requires=(),
+    requires=('gtimer', 'ray'),
     zip_safe=True,
     license='MIT'
 )

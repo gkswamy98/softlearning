@@ -1,0 +1,1 @@
+from scaledauto.envs.doom import * 

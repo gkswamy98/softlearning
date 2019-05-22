@@ -54,13 +54,11 @@ class TrajectoryReplayPool(ReplayPool):
 
     def add_sample(self, sample):
         raise NotImplementedError(
-            f"{self.__class__.__name__} only supports adding full paths at"
-            " once.")
+            "{0} only supports adding full paths at once.".format(self.__class__.__name__))
 
     def add_samples(self, samples):
         raise NotImplementedError(
-            f"{self.__class__.__name__} only supports adding full paths at"
-            " once.")
+            "{0} only supports adding full paths at once.".format(self.__class__.__name__))
 
     def batch_by_indices(self,
                          episode_indices,

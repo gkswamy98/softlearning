@@ -50,7 +50,7 @@ class SoftlearningEnv(Serializable, metaclass=ABCMeta):
         *args    --
         **kwargs --
         """
-        self._Serializable__initialize(locals())
+        self.initialize(locals())
         self._domain = domain
         self._task = task
 

@@ -1,4 +1,5 @@
-"""Functions for instrumenting and running softlearning examples.
+"""
+Functions for instrumenting and running softlearning examples.
 
 This package contains functions, which allow seamless runs of examples in
 different modes (e.g. locally, in google compute engine, or ec2).
@@ -181,17 +182,17 @@ def run_example_dry(example_module_name, example_argv):
     number_of_trials = experiments_info["number_of_trials"]
     total_number_of_trials = experiments_info["total_number_of_trials"]
 
-    experiments_info_text = f"""
-Dry run.
+    experiments_info_text = """
+    Dry run.
 
-Experiment specs:
-{pformat(experiment_kwargs, indent=2)}
+    Experiment specs:
+    {0}
 
-Number of trials:
-{pformat(number_of_trials, indent=2)}
+    Number of trials:
+    {1}
 
-Number of total trials (including samples/seeds): {total_number_of_trials}
-"""
+    Number of total trials (including samples/seeds): {2}
+    """.format(experiment_kwargs, number_of_trials, total_number_of_trials)
 
     print(experiments_info_text)
 
@@ -239,9 +240,9 @@ def run_example_debug(example_module_name, example_argv):
     for option in example_argv:
         if '--trial-cpus' in option:
             available_cpus = multiprocessing.cpu_count()
-            debug_example_argv.append(f'--trial-cpus={available_cpus}')
+            debug_example_argv.append('--trial-cpus={0}'.format(available_cpus))
         elif '--upload-dir' in option:
-            print(f"Ignoring {option} due to debug mode.")
+            print("Ignoring {0} due to debug mode.".format(option))
             continue
         else:
             debug_example_argv.append(option)
@@ -315,7 +316,7 @@ def launch_example_cluster(example_module_name,
             " storage. Use `--upload-dir` argument to set upload dir."
             " Continue without upload directory?\n(yes/no) ")
 
-    confirm_yes_no(f"Launch {total_number_of_trials} trials?\n(yes/no) ")
+    confirm_yes_no("Launch {0} trials?\n(yes/no) ".format(total_number_of_trials))
 
     override_cluster_name = override_cluster_name or unique_cluster_name(
         example_args)
