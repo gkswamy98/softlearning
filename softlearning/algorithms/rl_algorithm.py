@@ -11,6 +11,7 @@ import numpy as np
 
 from softlearning.samplers import rollouts
 from softlearning.misc.utils import save_video
+from scaledauto.utils.constants import *
 
 
 class RLAlgorithm(tf.contrib.checkpoint.Checkpointable):
@@ -23,7 +24,7 @@ class RLAlgorithm(tf.contrib.checkpoint.Checkpointable):
     def __init__(
             self,
             sampler,
-            n_epochs=1000,
+            n_epochs=NUM_SAC_EPOCHS,
             train_every_n_steps=1,
             n_train_repeat=1,
             max_train_repeat_per_timestep=5,
